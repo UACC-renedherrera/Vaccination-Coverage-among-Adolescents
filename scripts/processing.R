@@ -23,4 +23,16 @@ glimpse(vac_data)
 
 # what is the vaccination rate for AZ in 2019
 vac_data %>%
-  
+  filter(year_season == "2019",
+         geography == "Arizona",
+         vaccine == "HPV") %>%
+  select(dimension, dose, coverage_estimate, x_95_ci) %>%
+  write_csv(file = "data/tidy/2019_hpv_vacc.csv")
+
+# what is the vaccination rate for AZ in 2015-2019
+vac_data %>%
+  filter(year_season == "2015-2019",
+         geography == "Arizona",
+         vaccine == "HPV") %>%
+  select(dimension_type, dimension, coverage_estimate, x_95_ci) %>%
+  write_csv(file = "data/tidy/2015-2019_hpv_vacc.csv")
